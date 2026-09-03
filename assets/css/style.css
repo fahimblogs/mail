@@ -1,0 +1,125 @@
+:root{
+  --text:#e8ecf8;
+  --muted:#a6b0cc;
+  --glass:rgba(255,255,255,.12);
+  --border:rgba(255,255,255,.26);
+  --shadow:0 20px 50px rgba(0,0,0,.35);
+  --primary:#2dd4bf;
+  --danger:#ef4444;
+  --ok:#22c55e;
+  --inputBg:rgba(255,255,255,.08);
+}
+html[data-theme="light"]{
+  --text:#0f172a;
+  --muted:#334155;
+  --glass:rgba(255,255,255,.6);
+  --border:rgba(15,23,42,.18);
+  --shadow:0 20px 50px rgba(2,6,23,.15);
+  --primary:#0ea5e9;
+  --inputBg:rgba(255,255,255,.7);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  min-height:100vh;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  overflow-x:hidden;
+}
+.bg{
+  position:fixed; inset:0; z-index:-3;
+  background:linear-gradient(120deg,#0b1021,#1d4ed8,#6d28d9,#0ea5e9);
+  background-size:240% 240%;
+  animation:grad 12s ease infinite;
+}
+@keyframes grad{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.orb{
+  position:fixed; border-radius:999px; filter:blur(30px); opacity:.35; z-index:-2;
+  animation:float 7s ease-in-out infinite;
+}
+.orb1{width:260px;height:260px;background:#22d3ee;top:8%;left:6%}
+.orb2{width:300px;height:300px;background:#a78bfa;right:8%;bottom:10%;animation-delay:1.4s}
+@keyframes float{50%{transform:translateY(-18px) translateX(8px)}}
+.wrap{max-width:920px;margin:32px auto;padding:16px}
+.glass{
+  backdrop-filter:blur(14px);
+  background:var(--glass);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  border-radius:24px;
+}
+.card{padding:22px}
+.head{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px
+}
+h1{margin:0;font-size:1.55rem;letter-spacing:.2px}
+.sub{margin:6px 0 0;color:var(--muted);font-size:.95rem}
+label{display:block;font-weight:650;margin:12px 0}
+small{display:block;color:var(--muted);margin-top:7px}
+input,textarea{
+  width:100%; margin-top:7px;
+  border:1px solid var(--border); border-radius:14px;
+  padding:12px 13px; color:var(--text); background:var(--inputBg);
+  outline:none; transition:all .22s ease;
+}
+input:focus,textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px rgba(45,212,191,.15);
+  transform:translateY(-1px);
+}
+.row.two{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+}
+.actions{margin-top:16px}
+.btn{
+  border:none; border-radius:14px; padding:11px 16px; cursor:pointer;
+  transition:transform .15s ease, filter .2s ease, box-shadow .2s ease;
+}
+.btn:hover{transform:translateY(-1px); filter:brightness(1.06)}
+.btn:active{transform:translateY(0)}
+.btn.primary{
+  background:linear-gradient(135deg,var(--primary),#34d399);
+  color:#042b2a; font-weight:800; box-shadow:0 10px 25px rgba(52,211,153,.25)
+}
+.btn.ghost{
+  background:transparent; color:var(--text);
+  border:1px solid var(--border);
+}
+.spinner{
+  width:16px;height:16px;display:inline-block;margin-left:8px;
+  border:2px solid rgba(255,255,255,.55);
+  border-top-color:#fff;border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hidden{display:none!important}
+.status{min-height:22px;margin-top:10px;color:var(--muted)}
+.toast{
+  position:fixed; right:16px; bottom:16px; z-index:40;
+  padding:12px 14px; border-radius:12px; color:#fff;
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+.toast.success{background:var(--ok)}
+.toast.error{background:var(--danger)}
+.overlay{
+  position:fixed; inset:0; background:rgba(2,6,23,.45);
+  backdrop-filter:blur(2px); z-index:50;
+  display:grid; place-items:center;
+}
+.loaderCard{
+  background:rgba(15,23,42,.8); color:#fff; border:1px solid rgba(255,255,255,.2);
+  border-radius:16px; padding:18px 20px; min-width:220px; text-align:center;
+}
+.ring{
+  width:42px;height:42px;margin:0 auto 10px;
+  border:3px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+@media (max-width:760px){
+  .row.two{grid-template-columns:1fr}
+  h1{font-size:1.25rem}
+}
